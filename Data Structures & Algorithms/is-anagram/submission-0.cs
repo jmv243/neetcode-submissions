@@ -1,0 +1,32 @@
+public class Solution {
+    public bool IsAnagram(string s, string t) {
+        var dict = new Dictionary<char, int>();
+        foreach(var c in s){
+            if(dict.ContainsKey(c)){
+                dict[c]++;
+            }else{
+                dict.Add(c, 1);
+            }
+        }
+
+        foreach(var c in t){
+            if(!dict.ContainsKey(c)){
+                return false;
+            }else{
+                dict[c]--;
+
+                if(dict[c] < 0){
+                    return false;
+                }
+            }
+        }
+
+        foreach(var v in dict.Values){
+            if(v != 0){
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
